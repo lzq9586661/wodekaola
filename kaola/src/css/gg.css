@@ -1,0 +1,262 @@
+*{margin: 0;padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+img{vertical-align: top; }
+html,body{width: 100%;height: 100%;}
+.color_999{color: #999;}
+.color_000{color: #000000;}
+.color_fff{color: #FFFFFF;}
+.board {
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+}
+
+/* banner_top */
+.banner_top {
+	width: 100%;
+	height: 60px;
+}
+
+.banner_top img {
+	width: 100%;
+	height: 100%;
+}
+
+/* top */
+.top {
+	width: 100%;
+	height: 100px;
+	;
+	margin: auto;
+	position: relative;
+}
+.top:after{
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+.board:after{
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+.logo:after{
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+.logo {
+	width: 20%;
+	height: 100px;
+	position: relative;
+	float: left;
+}
+
+.logo img {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 17%;
+}
+.logo_right{
+	width: 40%;
+	height: 100px;
+	float: left;
+	position: absolute;
+	left: 50%;
+	top: 0;
+}
+.logo_right img {
+	width: 100%;
+}
+/* background */
+.body {
+	width: 100%;
+	height: 500px;
+	background-image: url("https://kaola-haitao.oss-cn-zhangjiakou.aliyuncs.com/410c2e59-40e1-469c-bda7-b456666a55bbT2005261406_1920_520.jpg");
+	background-repeat: no-repeat;
+	position: relative;
+}
+/* longin_window */
+.longin_window{
+	width: 350px;
+	height: 346px;
+	font-size: 12px;
+	background-color: #fff;
+	border: 1px solid #eaeaea;
+	position: absolute;
+	right: 136px;
+    top: 73px;
+	text-align: center;
+	margin: 0 auto;
+}
+.longin_top {
+    position: relative;
+	text-align: center;
+    height: 52px;
+    font-size: 16px;
+    line-height: 52px;
+    color: #e31436;
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+.longin_center{
+	width: 100%;
+	text-align: center;
+}
+.longin_center p:nth-child(1){
+	width: 100%;
+	line-height: 30px;
+	font-size: 12px;
+	text-indent:50%;
+}
+.user_box{
+	width: 60%;
+	height: 30px;
+	border: 1px solid #999999;
+	border-radius: 5px;
+	line-height: 40px;
+	margin: 10px 0 10px 0;
+	padding-left:15px;
+}
+#btnLogin{
+	background-color: #e31436;
+	border: 0;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	width: 70%;
+	border-radius: 5px;
+	margin-top: 8px;
+	color: #FFF0E8;
+}
+#btnReg{
+	background-color: #e31436;
+	border: 0;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	width: 70%;
+	border-radius: 5px;
+	margin-top: 8px;
+	color: #FFF0E8;
+}
+.longin_center span{
+	margin-top: 35px;
+	font-size: 12px;
+	line-height: 50px;
+}
+.tiaokuan{
+	color: #59baf3;
+	text-decoration: underline;
+}
+/* 登录底部 */
+.longin_bottmo{
+	padding: 10px 40px;
+	height: 42px;
+	font-size: 14px;
+	border-top: 1px solid #ddd;
+	background-color: #f8f8f8;
+	box-sizing: border-box;
+}
+.third-login {
+    float: left;
+}
+.a-icon-taobao {
+    display: block;
+    float: left;
+    margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 23px;
+	background: url(https://kaola-haitao.oss.kaolacdn.com/fe663cdc-4eb9-4b2b-b587-6a97abcd8019.png) no-repeat;
+	background-size: cover;
+}
+.a-icon-alipay {
+    display: block;
+    float: left;
+    margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 23px;
+	background: url(https://kaola-haitao.oss.kaolacdn.com/fe663cdc-4eb9-4b2b-b587-6a97abcd8019.png) no-repeat;
+	background-size: cover;
+	background-position: -32px 0
+}
+.a-icon-wx{
+	display: block;
+	float: left;
+	margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 23px;
+	background: url(https://kaola-haitao.oss.kaolacdn.com/fe663cdc-4eb9-4b2b-b587-6a97abcd8019.png) no-repeat;
+	background-size: cover;
+	background-position: -64px 0
+}
+.a-icon-sina{
+	display: block;
+	float: left;
+	margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 23px;
+	background: url(https://kaola-haitao.oss.kaolacdn.com/fe663cdc-4eb9-4b2b-b587-6a97abcd8019.png) no-repeat;
+	background-size: cover;
+	background-position: -96px 0
+}
+.a-icon-netease{
+	display: block;
+	floata-icon-netease: left;
+	margin-right: 10px;
+	display: inline-block;
+	width: 30px;
+	height: 23px;
+	background: url(https://kaola-haitao.oss.kaolacdn.com/fe663cdc-4eb9-4b2b-b587-6a97abcd8019.png) no-repeat;
+	background-size: cover;
+	background-position: -162px 0
+}
+/* footer */
+.footer{
+	position: relative;
+	padding: 20px 0;
+	background: #333;
+	line-height: 26px;
+	text-align: center;
+	width: 100%;
+	color: #666;
+	background: #fff;
+	font-size: 14px;
+}
+.f-tac{
+	width: 100%;
+	height: 35px;
+}
+.KXYZ{
+	width: 65px;
+	height: 27px;
+	float: left;
+	margin-left:45% ;
+}
+.KXYZ1{
+	width: 30px;
+	height: 35px;
+	float: left;
+	margin: 0 auto;
+	margin-left: 20px;
+}
+.KXYZ img{
+	width: 100%;
+	height: 100%;
+}
+.KXYZ1 img{
+	width: 100%;
+	height: 100%;
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>购物车-考拉海购</title>
+  <link rel="stylesheet" href="../css/cart.css">
+  <style type="text/css">
+  	#car{
+		width: 100%;
+		height: 30px;
+		text-align: center;
+		font-size: 24px;
+	}
+  </style>
+</head>
+<body>
+ <!-- banner_top -->
+ <div class="banner_top">
+ 	<img src="../img/banner_top1.jpg">
+ </div>
+ <!-- 顶部 -->
+ <div class="header">
+ 	<div class="board">
+ 		<div class="header_left">
+ 			<ul>
+ 				<li>考拉欢迎你</li>
+ 				<li><a class="color_999" href="../page/login.html">登录</a></li>
+ 				<li><a class="color_999" href="../page/reg.html">免费注册</a></li>
+ 				<li>手机考拉</li>
+ 			</ul>
+ 		</div>
+ 		<div class="header_right">
+ 			<ul>
+ 				<li>每日签到</li>
+ 				<li>我的订单</li>
+ 				<li>个人中心</li>
+ 				<li>客服服务</li>
+ 				<li>充值中心</li>
+ 				<li>消费者权益</li>
+ 				<li>更多</li>
+ 				<li>视频内容</li>
+ 			</ul>
+ 		</div>
+ 	</div>
+ </div>
+ <!-- logo -->
+ <div class="top">
+ 	<div class="board">
+ 		<div class="logo">
+ 			<a href="../index.html"><img src="../img/logo.png" /></a>
+ 		</div>
+ 		<div id="topsearch">
+ 			<div class="wrap">
+ 				<input id="topSearchInput" type="text" placeholder="">
+ 			</div>
+ 			<div class="topsearchboxBackGround">
+ 				<div id="topSearchBtn"></div>
+ 			</div>
+ 		</div>
+ 		<div class="history">
+ 			<ul>
+ 				<li>口红</li>
+ 				<li>女装</li>
+ 				<li>男装</li>
+ 			</ul>
+ 		</div>
+ 		<div name="buycar" class="car">
+ 			<div class="car_logo">
+ 				<img src="../img/购物车.png">
+ 			</div>
+ 			<div class="car_text">购物车</div>
+ 		</div>
+ 	</div>
+ </div>
+
+
+	<div class="board">
+		<div class="container">
+			  
+		</div>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<a href="https://you.kaola.com/common/page.html?key=Privacy_policy" rel="nofollow" class="color_999" target="_blank" title="隐私政策">隐私政策</a>
+		<span class="sep">- </span>
+		<a href="https://www.kaola.com/" target="_blank" class="color_999" title="考拉海购" data-param="zn=footer">考拉海购</a><br>
+		<span class="m-license">增值电信业务经营许可证：浙B2-20160288</span>
+		<span class="m-license">
+			<a href="//pages.kaola.com/pages/activity/Businessentity.shtml" rel="nofollow" class="color_999" target="_blank" title="自营经营者信息">自营经营者信息 </a>
+		</span>
+		<span class="m-license">（浙）网械平台备字[2018]第00007号</span><br>
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802002216&no_protofix" class="color_999">
+			<img src="//haitao.nos.netease.com/f28aa8ee818a42bf832341f605eccefb.png">
+		</a>
+		<a target="_blank" class="color_999" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802002216&no_protofix">
+			<span style="margin: 0px 0px 0px 5px;">浙公网安备 33010802002216号</span>
+		</a>
+		<span class="m-license">阿里巴巴版权所有©2003-2020</span>
+		<a target="_blank" class="color_999" href="//haitao.nos.netease.com/d37ac4eb-016f-485b-9577-04ae7e0f4bbd.jpg">
+			<span style="margin: 0px 0px 0px 20px;">互联网药品信息服务资格证书编号（浙）-2017-0027</span>
+		</a>
+		<a target="_blank" href="http://beian.miit.gov.cn" class="color_999">
+			<span style="margin: 0px 0px 0px 20px;">浙ICP备16011229号</span>
+		</a>
+		<div class="f-tac">
+			<span class="KXYZ">
+				<img src="//haitao.nos.netease.com/d720d83b55a04b6f932ea845c673c5bf.png" alt="可信网站">
+			</span>
+			<span class="KXYZ1">
+				<img src="//img.alicdn.com/tfs/TB1rcIoq.Y1gK0jSZFCXXcwqXXa-65-70.png" alt="工商营业执照网上标识">
+			</span>
+		</div>
+	</div>
+
+  <script src="../js/jquery-1.8.3.min.js"></script>
+  <script>
+    // 获取本地购车数据信息
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    // 执行函数,参数是获取的购物车的数据信息
+    setPage(cart);
+    // 定义生成页面的函数
+    function setPage(cartMsg) {
+      // 设定结算信息
+      // 商品种类
+      let cartType = 0;
+      // 商品数量
+      let cartNum = 0;
+      // 总价格
+      let cartPay = 0;
+	  let cartdis = 0;
+
+      // 购物车信息,如果是一个空数组,渲染显示其他内容
+      if (cartMsg.length == 0) {
+        $('.container').html('您的购物车空空如也,赶快叫家人来购物');
+        return;
+      }
+
+      let str = `
+      <div class="car_big">
+        <div class="car_top">
+          <div class="checkbox">
+            <button name="true" class="car_checkbtn">全选</button>
+            <button name="false" class="car_checkbtn">不选</button>
+            <button name="not" class="car_checkbtn">反选</button>
+          </div>
+        </div>
+        <div class="car_center">
+          <ul class="car-list">
+    `;
+
+      // 第二部分 循环遍历,生成 li 的部分
+      cartMsg.forEach(function (item, key) {
+        str += `
+        <li class="car-item">
+          <div class="carchoos_left">
+            <input index=${key} type="checkbox" ${item.bool == true ? 'checked' : ''} >
+          </div>
+          <div class="car_right">
+              <div class="car_oimg">
+                <a href="#">
+                  <img class="car_img" src="${item.msg.goods_small_logo}" alt="...">
+                </a>
+              </div>
+              <div class="car_media-body">
+				<div class="board">
+                <p class="car_media-heading">${item.msg.goods_name}</p>
+				<div class="car_price">
+					<s class="car_priceold">￥${item.msg.goods_price*1.2}</s>
+					<p class="car_pricenew">￥${item.msg.goods_price}</p>
+				</div>
+				
+                <div class="btn-add" role="group" aria-label="...">
+                  <button name="-"  index="${key}" ${item.num <= 1 ? 'disabled' : ''} type="button" class="btn-one">-</button>
+                  <button name="num" type="button" class="car_btnnum" disabled>${item.num}</button>
+                  <button name="+" index="${key}" ${item.num >= item.msg.goods_number ? 'disabled' : ''} type="button" class="btn-one">+</button>
+                </div>
+				
+                <button name="del" index="${key}" class="car_dont">删除</button>
+              </div>
+			  </div>
+          </div>
+        </li>
+      `;
+
+        // 当购买状态为true时 计算 购买商量的种类 数量 价格
+        if (item.bool == true) {
+          // 1,计算种类数量  给 变量++
+          cartType++;
+          // 2,计算购买件数
+          cartNum += item.num;
+          // 3,计算购买总价格 件数 * 单价
+          cartPay += item.num * item.msg.goods_price;
+		  // 优惠金额
+		  cartdis += (Math.floor((item.msg.goods_price*1.2 - item.msg.goods_price )* 100) / 100)*item.num;
+        }
+      })
+      // 第三部分 , 购物商品信息下方的内容 ,  li之后的内容
+      str += `
+        </ul>
+        </div>
+      </div>
+
+      <div class="car_bottom">
+			<p class="car_setnum">活动优惠￥-${cartdis}</p>
+			<p class="car_setnum" name="cartType">已选${cartType}种商品,累计购买${cartNum}件商品</p>
+			<span class="car_settext">总价(不含运费)</span>
+			<span class="car_setprice" name="cartPay">￥${cartPay.toFixed(2)}</span>
+			<div class="car_setbtn">去结算</div>
+		</div>
+    `;
+      // 将 str 写入到div中
+      $('.container').html(str);
+    }
+
+    $('.container').click(function (e) {
+      const ele = e.target;
+      if ($(ele).attr('name') == 'true') {
+        cart.forEach(function (item) {
+          item.bool = true;
+        })
+        setPage(cart);
+      }
+      if ($(ele).attr('name') == 'false') {
+        // 执行不选效果,给 购物车数据信息中的 bool 全部设定为 false
+        cart.forEach(function (item) {
+          item.bool = false;
+        })
+        // 根据新的数据,重新渲染页面
+        setPage(cart);
+      }
+      if ($(ele).attr('name') == 'not') {
+        // 循环遍历所有的 复选框 做反选效果
+        $('[type="checkbox"]').each(function (key, item) {
+          // 设定标签的 checked 效果,是原始效果 取反
+          let bool = !($(item).prop('checked'));
+          cart[key].bool = bool;
+        })
+        // 根据新的数据,重新渲染页面
+        setPage(cart);
+      }
+      // 不要
+      // 判断点击标签 name属性值 是 del 字符串
+      if ($(ele).attr('name') == 'del') {
+        let key = $(ele).attr('index');
+        // 从当前索引,也就是 index 表示的索引,开始删除,删除一个单元
+        cart.splice(key, 1);
+
+        setPage(cart);
+      }
+
+      if ($(ele).attr('type') == 'checkbox') {
+        // 获取标签index的属性值,也就是 标签对应数据的 索引值
+        let key = $(ele).attr('index');
+        cart[key].bool = $(ele).prop('checked');
+        // 根据新的数据,重新渲染页面
+        setPage(cart);
+      }
+
+      if ($(ele).attr('name') == '-') {
+        // 获取当前标签的index属性值,也就是数据的索引
+        let key = $(ele).attr('index');
+        // 根据索引,给num中存储的数值 -1
+        cart[key].num--;
+        setPage(cart);
+      }
+      if ($(ele).attr('name') == '+') {
+        // 获取当前标签的index属性值,也就是数据的索引
+        let key = $(ele).attr('index');
+        // 根据索引,给num中存储的数值 +1
+        cart[key].num++;
+        // 因为要根据 num的数值 来判断是否给标签设定禁用效果
+        // 需要根据新的数据,冲洗你渲染页面
+        setPage(cart);
+      }
+      // 将新的购物车数据,设定到 localStorage 中
+      // 实际项目中应该是修改数据库的操作
+      localStorage.setItem('cart', JSON.stringify(cart));
+    })
+  </script>
+</body>
+</html>

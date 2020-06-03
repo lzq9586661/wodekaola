@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" type="text/css" href="../css/detail.css" />
+		<title></title>
+	</head>
+	<body>
+		<!-- banner_top -->
+		<div class="banner_top">
+			<img src="../img/banner_top.jpg">
+		</div>
+		<!-- 顶部 -->
+		<div class="header">
+			<div class="board">
+				<div class="header_left">
+					<ul>
+						<li>考拉欢迎你</li>
+						<li><a class="color_999" href="./page/login.html">登录</a></li>
+						<li><a class="color_999" href="./page/reg.html">免费注册</a></li>
+						<li>手机考拉</li>
+					</ul>
+				</div>
+				<div class="header_right">
+					<ul>
+						<li>每日签到</li>
+						<li>我的订单</li>
+						<li>个人中心</li>
+						<li>客服服务</li>
+						<li>充值中心</li>
+						<li>消费者权益</li>
+						<li>更多</li>
+						<li>视频内容</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- logo -->
+		<div class="top">
+			<div class="board">
+				<div class="logo">
+					<a href="../index.html"><img src="../img/logo.png" /></a>
+				</div>
+				<div id="topsearch">
+					<div class="wrap">
+						<input id="topSearchInput" type="text" placeholder="">
+					</div>
+					<div class="topsearchboxBackGround">
+						<div id="topSearchBtn"></div>
+					</div>
+				</div>
+				<div class="history">
+					<ul>
+						<li>口红</li>
+						<li>女装</li>
+						<li>男装</li>
+					</ul>
+				</div>
+				<div name="buycar" class="car">
+					<div class="car_logo">
+						<img src="../img/购物车.png">
+					</div>
+					<div class="car_text">购物车</div>
+				</div>
+			</div>
+		</div>
+		<!-- nav -->
+		<div class="top_nav">
+			<div class="board">
+				<div class="navitm">
+					<div class="nav_img">
+						<img src="../img/mulu.png">
+					</div>
+					<div class="nav_text">所有分类</div>
+				</div>
+				<ul class="nav_tab">
+					<li><a class="color_000" href="./list.html?cat_one_id=手机相机" role="button">手机相机</a></li>
+					<li><a class="color_000" href="./list.html?cat_one_id=海外购" role="button">海外直邮</a></li>
+					<li><a class="color_000" href="./list.html?cat_one_id=童装玩具" role="button">童装玩具</a></li>
+					<li><a class="color_000" href="./list.html?cat_one_id=奶粉尿裤" role="button">品质奶粉</a></li>
+					<li><a class="color_000" href="./list.html?cat_one_id=智能设备" role="button">智能设备</a></li>
+					<li><a class="color_000" href="./list.html?cat_one_id=家装建材" role="button">家装建材</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<!-- 标题 -->
+		<div class="dpage_bt">
+			<div class="board">
+				<div class="dpage_top">
+					<span>考拉海购></span>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- 内容 -->
+		<div class="board">
+			<div class="container"></div>
+		</div>
+		<!-- <div class="box"></div> -->
+
+		<script src="../js/jquery-1.8.3.min.js"></script>
+		<script>
+    
+			// 1,获取地址栏参数
+			const arr = decodeURI(window.location.search).substring(1).split('=');
+			console.log((window.location.search).substring(1).split('='));
+
+			// 2,发送ajax请求
+			$.ajax({
+				url: '../server/goods_select_list.php',
+				type: 'post',
+				data: {
+					goods_id: arr[1],
+				},
+				dataType: 'json',
+				success(res) {
+					console.log(res);
+					// title
+					const abc = res.goods_name;
+					document.getElementsByTagName("title")[0].innerText = abc;
+					//name
+					// const DpageName=document.getElementsByClassName("dpage_name");
+					// DpageName.innerText=res.goods_name;
+					// console.log(DpageName.innerText);
+					// console.log(arr[1]);
+					const Fenqi=Math.floor(res.goods_price/3 * 100) / 100;
+					console.log(Fenqi);
+					const discount=Math.floor(res.goods_price/43 * 100) / 100;
+					console.log(discount);
+					console.log(res.goods_small_logo);
+					
+					let str =
+						`
+			<div class="media">
+				<div class="board">
+		      <div class="media-left">
+					<div id="box" style="background-image: url(${res.goods_small_logo});">
+					    <div id="mirror-box"></div>
+					    <div id="show-box" style="background-image: url(${res.goods_big_logo});"></div>
+					</div>
+		     
+		      </div>
+			  
+		      <div class="media-body">
+			  <div class="media-category">
+					<span>${res.cat_one_id}   ></span>
+					<span>${res.cat_two_id}   ></span>
+					<span>${res.cat_three_id}</span>
+			  </div>
+					<h4 class="media-heading">${res.goods_name}</h4>
+					<span class="label_small">售价</span>
+					<span class="media-p">${res.goods_price} </span>
+					
+					<div>
+						<span class="label_small">分期</span>
+						<span class="label" style="color:#fff">3期免息</span>
+						<span class="small_price">￥${Fenqi}</span>
+						<span class="label_small">元x3期免息,预计便宜${discount}元</span>
+						<span class="color_red">手机APP专享</span>
+					</div>
+					<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn_default">XL</button>
+						  <button type="button" class="btn_default">L</button>
+						  <button type="button" class="btn_default">M</button>
+						  <button type="button" class="btn_default">S</button>
+						  <button type="button" class="btn_default">XS</button>
+					</div>
+					<a href="javascript:;" class="BuyBotton" role="button">立即购买</a>
+					<a href="javascript:;" class="CarBotton" name="incar" role="button">加入购物车</a>
+		        </div>
+
+
+		      </div>
+
+		    <div class="dpage_bottomimg">
+				<div class="board">
+					<div class="bigimg_left"></div>
+					<div>${res.goods_introduce}</div>
+					
+				</div>
+		    </div>
+		</div>
+        
+        `;
+					// 将str写入到div中
+					$('.container').html(str);
+
+					// 当请求成功时,执行函数
+					setCart(res);
+				}
+			})
+
+			
+			
+			
+			
+			function setCart(res) {
+				$('.container').on('click', '[name="incar"]', function() {
+					// 判断,是否有 登录状态码 是否是 1
+					if (localStorage.getItem('login') != 1) {
+						// 登录状态码不是 1 , 证明没有登录 , 要跳转登录页面
+						// 弹出一个确认框,如果点击确定,跳转登录页面,点击取消,不做操作
+						let bool = window.confirm('您还没有登录,是否现在就去登录');
+						if (bool == true) {
+							// 如果点击确定,也就是返回值是true,跳转登录页面
+							window.location.href = `./login.html?url=${window.location}`;
+						}
+					} else {
+						if (localStorage.getItem('cart') == null) {
+							let cartObj = {};
+							cartObj.msg = res;
+							// 购买数量
+							cartObj.num = 1;
+							// 购买状态
+							cartObj.bool = true;
+							const cart = [];
+							// 将商品信息对象,写入到数组中
+							cart.push(cartObj);
+							// 将数组写入到localStorage 中
+							localStorage.setItem('cart', JSON.stringify(cart));
+						} else {
+							let bool = true;
+							let newCart = JSON.parse(localStorage.getItem('cart'));
+
+							newCart.forEach(function(item) {
+								if (item.msg.goods_id == res.goods_id) {
+									bool = false;
+
+									// forEach语句,不支持break
+								}
+							})
+
+							if (bool == true) {
+								// 建立对象,存储当前商品的信息
+								let cartObj = {};
+								// 向对象中写入数据 
+								// 购买产品信息
+								cartObj.msg = res;
+								// 购买数量
+								cartObj.num = 1;
+								// 购买状态
+								cartObj.bool = true;
+								// 将新的查新信息,作为一个新的单元,写入到newCart中
+								newCart.push(cartObj);
+							}
+							localStorage.setItem('cart', JSON.stringify(newCart));
+						}
+						// 跳转至购物车页面
+						window.location.href = './cart.html';
+					}
+				})
+			}
+			// $.ajax({
+			// 		url: '../server/goods_select_list.php',
+			// 		type: 'post',
+			// 		data: {
+			// 			goods_id: parseInt(arr[1])+1
+			// 		},
+			// 		dataType: 'json',
+			// 		success(res) {
+			// 			console.log(res);
+			// 			// title
+			// 			const abc = res.goods_name;
+			// 			document.getElementsByTagName("title")[0].innerText = abc;
+			// 			//name
+			// 			// const DpageName=document.getElementsByClassName("dpage_name");
+			// 			// DpageName.innerText=res.goods_name;
+			// 			// console.log(DpageName.innerText);
+			// 			// console.log(arr[1]);
+
+			// 			let str1 =
+			// 				`
+			// <div class="panel panel-default">
+			//   <div class="panel-heading">
+			//     <h3 class="panel-title">商品详细信息</h3>
+			//   </div>
+			//   <div class="panel-body">
+			//     <div class="media">
+			//       <div class="media-left">
+			//         <a href="#">
+			//           <img class="media-object" src="${res.goods_small_logo}" alt="...">
+			//         </a>
+			//       </div>
+			//       <div class="media-body">
+			//         <h4 class="media-heading">${res.goods_name}</h4>
+			//         <p>
+			//           <i class="glyphicon glyphicon-yen"></i>
+			//           <span>￥${res.goods_price}</span>
+			//         </p>
+			//       </div>
+			//     </div>
+			//   </div>
+			// </div>
+
+			// `;
+
+			// 			// 将str写入到div中
+			// 			$('.box').html(str1);
+
+			// 			// 当请求成功时,执行函数
+			// 			setCart(res);
+			// 		}
+			// 	})
+
+		</script>
+	</body>
+</html>
